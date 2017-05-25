@@ -27,8 +27,7 @@ function login($username, $password) {
     $userQuery = "SELECT * FROM anita_ndp_users WHERE username='$username' AND password=SHA1('$password')";
     $userResult = mysqli_query($connection, $userQuery) or die ("$userQuery - ". mysqli_error($connection));
     if (mysqli_num_rows($userResult) != 0) {
-        print_r($userResult);
-        $_SESSION['user'] = 1;
+        $_SESSION['user'] = mysqli_fetch_assoc($userResult);
     }
     else {
         $errors[] = 'Login failed, wrong username or password';
@@ -75,6 +74,10 @@ function printErrors($errors) {
     foreach($errors as $error) {
         echo '<div style="color:red;">' . htmlspecialchars($error) . '</div>';
     }
+}
+
+function isUserLoggedIn() {
+    return isset($_SESSION['user']);
 }
 
 function toIndexPage() {

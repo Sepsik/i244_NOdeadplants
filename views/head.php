@@ -8,7 +8,7 @@
 <div id="wrap">
     <a href="?"><img src="logo.png"/></a>
 	<ul id="menu">
-		<?php if(isset($_SESSION['user'])): ?>
+		<?php if(isUserLoggedIn()): ?>
 			<li><a href="?page=plants">Plants</a></li>
 			<li><a href="?page=add">Add plants</a></li>
 			<li><a href="?page=logout">Logout</a></li>

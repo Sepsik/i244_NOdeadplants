@@ -1,6 +1,6 @@
 <img src="background.jpg"/>
 
-<?php if(!isset($_SESSION['user'])) {
+<?php if(!isUserLoggedIn()) :
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errors = login($_POST['username'], $_POST['password']);
         printErrors($errors);
@@ -27,8 +27,7 @@
         </table>
     </form>
 <?php
-}
-else {
+else:
     echo "Todo: show list of dying plants";
-}
+endif;
 ?>
