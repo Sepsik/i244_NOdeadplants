@@ -9,10 +9,31 @@ function connect_db(){
     mysqli_query($connection, "SET CHARACTER SET UTF8") or die("Cannot set charset to UTF8 - " . mysqli_error($connection));
 }
 
-function login() {
+function login($username, $password) {
     global $connection;
     $errors = array();
-    $_SESSION['user']=1;
+    $username = mysqli_real_escape_string($connection, $username);
+    $password = mysqli_real_escape_string($connection, $password);
+    if (empty($username)) {
+        $errors[] = 'Username not set';
+    }
+    if (empty($password)) {
+        $errors[] = 'Password not set';
+    }
+    if (!empty($errors)) {
+        return $errors;
+    }
+
+    $userQuery = "SELECT * FROM anita_ndp_users WHERE username='$username' AND password=SHA1('$password')";
+    $userResult = mysqli_query($connection, $userQuery) or die ("$userQuery - ". mysqli_error($connection));
+    if (mysqli_num_rows($userResult) != 0) {
+        print_r($userResult);
+        $_SESSION['user'] = 1;
+    }
+    else {
+        $errors[] = 'Login failed, wrong username or password';
+    }
+    return $errors;
 }
 
 function doRegister($username, $password) {
@@ -41,7 +62,7 @@ function doRegister($username, $password) {
     $userInsertQuery = "insert into anita_ndp_users(username, password) values('$username', SHA1('$password'))";
     $insertResult = mysqli_query($connection, $userInsertQuery) or die ("User adding failed: " . mysqli_error($connection));
 
-    login();
+    login($username, $password);
     return $errors;
 }
 

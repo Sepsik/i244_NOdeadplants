@@ -13,7 +13,6 @@
 			<li><a href="?page=add">Add plants</a></li>
 			<li><a href="?page=logout">Logout</a></li>
 		<?php else: ?>
-			<li><a href="?page=login">Login</a></li>
 			<li><a href="?page=register">Register</a></li>
 		<?php endif; ?>
 	</ul>

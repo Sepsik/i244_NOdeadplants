@@ -12,10 +12,6 @@ if (isset($_GET['page']) && $_GET['page']!=""){
 include_once('views/head.php');
 
 switch($page){
-    case "login":
-        login();
-        toIndexPage();
-        break;
     case "logout":
         logout();
         toIndexPage();
