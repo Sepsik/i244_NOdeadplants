@@ -8,8 +8,20 @@
       }
   }
   ?>
+<script>
+    function checkPasswords() {
+        if (document.getElementById('password1').value ===
+            document.getElementById('password2').value) {
+            return true;
+        }
+        else {
+            alert('Passwords do not match!');
+            return false;
+        }
+    }
+</script>
 
-<form method="post" action="?page=register">
+<form method="post" action="?page=register" onsubmit="return(checkPasswords())">
     <table border="0">
         <tr>
             <td>Username</td>
@@ -17,7 +29,11 @@
         </tr>
         <tr>
             <td>Password</td>
-            <td><input type="password" name="password"/> </td>
+            <td><input type="password" name="password" id="password1"/> </td>
+        </tr>
+        <tr>
+            <td>Retype password</td>
+            <td><input type="password" id="password2"/> </td>
         </tr>
         <tr>
             <td/>
