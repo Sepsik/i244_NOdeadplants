@@ -11,7 +11,7 @@
         <div id="menu">
             <ul>
                 <?php if(isUserLoggedIn()): ?>
-                    <li><a href="?page=add">Add plants</a></li>
+                    <li><a href="?page=addPlants">Add plants</a></li>
                     <li><a href="?page=logout">Logout</a></li>
                 <?php else: ?>
                     <li><a href="?page=register">Register</a></li>

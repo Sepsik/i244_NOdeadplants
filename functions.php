@@ -65,6 +65,41 @@ function doRegister($username, $password) {
     return $errors;
 }
 
+function addPlants($name, $desc, $interval) {
+    global $connection;
+    $errors = array();
+    $name = mysqli_real_escape_string($connection, $name);
+    $desc = mysqli_real_escape_string($connection, $desc);
+    $interval = mysqli_real_escape_string($connection, $interval);
+
+
+    if (empty($name)) {
+        $errors[] = 'Plant name not set';
+    }
+    if (empty($desc)) {
+        $errors[] = 'Description not set';
+    }
+
+    if (!is_numeric($interval) || $interval <= 0) {
+        $errors[] = 'Invalid interval';
+    }
+    if (!empty($errors)) {
+        return $errors;
+    }
+
+    $plantExistenceQuery = "SELECT * FROM anita_ndp_plants WHERE name='$name' AND user_id='".$_SESSION['user']['ID']."'";
+    $plantExistenceResult = mysqli_query($connection, $plantExistenceQuery) or die ("Name check failed: " . mysqli_error($connection));
+    if (mysqli_num_rows($plantExistenceResult) != 0) {
+        $errors[] = 'Plant named '. $name . ' already exists';
+        return $errors;
+    }
+
+    $plantInsertQuery = "insert into anita_ndp_plants(user_ID, name, description, watering_interval, last_watered) values ('".$_SESSION['user']['ID']."', '$name', '$desc', '$interval', NOW())";
+    $plantInsertResult = mysqli_query($connection, $plantInsertQuery) or die ("Plant adding failed: " . mysqli_error($connection));
+
+    return $errors;
+}
+
 function logout(){
     $_SESSION=array();
     session_destroy();

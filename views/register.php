@@ -23,7 +23,7 @@
 </script>
 <div id="form">
     <form method="post" action="?page=register" onsubmit="return(checkPasswords())">
-        <table border="0">
+        <table>
             <tr>
                 <td>Username</td>
                 <td><input type="text" name="username"/> </td>
