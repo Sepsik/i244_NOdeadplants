@@ -29,7 +29,23 @@
         </form>
     </div>
 <?php
-else:
-    echo "Todo: show list of dying plants";
+else: ?>
+    <div id="userPlants">
+    <table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Next Watering</th>
+    </tr>
+<?php
+    foreach (getUserPlants() as $plant) {
+        echo "<tr>";
+        echo "<td style='font-weight: bold; width:100px'>".htmlspecialchars($plant['name'])."</td>";
+        echo "<td style='text-align: justify'>".htmlspecialchars($plant['description'])."</td>";
+        echo "<td style='color: darkred'>".htmlspecialchars($plant['next_watering'])."</td>";
+        echo "</tr>";
+    }
 endif;
 ?>
+    </table>
+    </div>

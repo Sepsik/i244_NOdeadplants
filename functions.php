@@ -100,6 +100,15 @@ function addPlants($name, $desc, $interval) {
     return $errors;
 }
 
+function getUserPlants() {
+    global $connection;
+
+    $query = "select id, user_id, name, description, watering_interval, last_watered, DATE_ADD(last_watered, INTERVAL watering_interval DAY) as next_watering from anita_ndp_plants  
+    where user_id='".$_SESSION['user']['ID']."' order by next_watering";
+    $queryResult = mysqli_query($connection, $query) or die ("Getting all plants failed: " . mysqli_error($connection));
+    return mysqli_fetch_all($queryResult, MYSQLI_ASSOC);
+}
+
 function logout(){
     $_SESSION=array();
     session_destroy();
