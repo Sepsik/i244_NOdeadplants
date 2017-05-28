@@ -71,9 +71,11 @@ function logout(){
 }
 
 function printErrors($errors) {
+    echo '<div id="errors">';
     foreach($errors as $error) {
-        echo '<div style="color:red;">' . htmlspecialchars($error) . '</div>';
+        echo '<p>' . htmlspecialchars($error) . '</p>';
     }
+    echo '</div>';
 }
 
 function isUserLoggedIn() {

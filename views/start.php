@@ -1,4 +1,4 @@
-<img src="background.jpg"/>
+<img src="background.jpg" id="background"/>
 
 <?php if(!isUserLoggedIn()) :
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -10,22 +10,24 @@
         }
     }
     ?>
-    <form method="post" action="?page=start">
-        <table border="0">
-            <tr>
-                <td>Username</td>
-                <td><input type="text" name="username"/> </td>
-            </tr>
-            <tr>
-                <td>Password</td>
-                <td><input type="password" name="password"/> </td>
-            </tr>
-            <tr>
-                <td/>
-                <td><input type="submit" value="Login"/> </td>
-            </tr>
-        </table>
-    </form>
+    <div id="form">
+        <form method="post" action="?page=start">
+            <table border="0">
+                <tr>
+                    <td>Username</td>
+                    <td><input type="text" name="username"/> </td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td><input type="password" name="password"/> </td>
+                </tr>
+                <tr>
+                    <td/>
+                    <td><input type="submit" value="Login"/> </td>
+                </tr>
+            </table>
+        </form>
+    </div>
 <?php
 else:
     echo "Todo: show list of dying plants";

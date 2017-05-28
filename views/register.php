@@ -1,3 +1,4 @@
+<img src="background.jpg" id="background"/>
 <?php
   if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $errors = doRegister($_POST['username'], $_POST['password']);
@@ -20,24 +21,25 @@
         }
     }
 </script>
-
-<form method="post" action="?page=register" onsubmit="return(checkPasswords())">
-    <table border="0">
-        <tr>
-            <td>Username</td>
-            <td><input type="text" name="username"/> </td>
-        </tr>
-        <tr>
-            <td>Password</td>
-            <td><input type="password" name="password" id="password1"/> </td>
-        </tr>
-        <tr>
-            <td>Retype password</td>
-            <td><input type="password" id="password2"/> </td>
-        </tr>
-        <tr>
-            <td/>
-            <td><input type="submit" value="Register"/> </td>
-        </tr>
-    </table>
-</form>
+<div id="form">
+    <form method="post" action="?page=register" onsubmit="return(checkPasswords())">
+        <table border="0">
+            <tr>
+                <td>Username</td>
+                <td><input type="text" name="username"/> </td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input type="password" name="password" id="password1"/> </td>
+            </tr>
+            <tr>
+                <td>Retype password</td>
+                <td><input type="password" id="password2"/> </td>
+            </tr>
+            <tr>
+                <td/>
+                <td><input type="submit" value="Register"/> </td>
+            </tr>
+        </table>
+    </form>
+</div>
