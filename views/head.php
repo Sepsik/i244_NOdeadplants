@@ -7,7 +7,7 @@
 </head>
 <body>
 <div id="wrap">
-        <a href="?" id="logo"><img src="logo.png"/></a>
+        <a href="?" id="logo"><img src="logo.png" alt="NOdeadplants"/></a>
         <div id="menu">
             <ul>
                 <?php if(isUserLoggedIn()): ?>

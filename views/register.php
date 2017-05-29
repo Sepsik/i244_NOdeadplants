@@ -1,4 +1,4 @@
-<img src="background.jpg" id="background"/>
+<img src="background.jpg" id="background" alt="plant background"/>
 <?php
   if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $errors = doRegister($_POST['username'], $_POST['password']);
@@ -37,7 +37,7 @@
                 <td><input type="password" id="password2"/> </td>
             </tr>
             <tr>
-                <td/>
+                <td></td>
                 <td><input type="submit" value="Register"/> </td>
             </tr>
         </table>
