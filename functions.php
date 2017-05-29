@@ -109,6 +109,22 @@ function getUserPlants() {
     return mysqli_fetch_all($queryResult, MYSQLI_ASSOC);
 }
 
+function waterThePlant($plantId) {
+    global $connection;
+    $plantId = mysqli_real_escape_string($connection, $plantId);
+
+    $plantWateringQuery = "update anita_ndp_plants set last_watered = NOW() where id='$plantId' and user_id='".$_SESSION['user']['ID']."'";
+    mysqli_query($connection, $plantWateringQuery) or die ("Plant watering failed: " . mysqli_error($connection));
+}
+
+function deletePlant($plantId) {
+    global $connection;
+    $plantId = mysqli_real_escape_string($connection, $plantId);
+
+    $plantDeleteQuery = "delete from anita_ndp_plants where id='$plantId' and user_id='".$_SESSION['user']['ID']."'";
+    mysqli_query($connection, $plantDeleteQuery) or die ("Deleting plant failed: " . mysqli_error($connection));
+}
+
 function logout(){
     $_SESSION=array();
     session_destroy();

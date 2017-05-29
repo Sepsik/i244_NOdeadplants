@@ -29,21 +29,44 @@
         </form>
     </div>
 <?php
-else: ?>
+else:
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if (isset($_POST['water'])) {
+            waterThePlant($_POST['plantId']);
+        }
+        else if (isset($_POST['delete'])) {
+            deletePlant($_POST['plantId']);
+        }
+        toIndexPage();
+        return;
+}
+?>
     <div id="userPlants">
-    <table border="1">
-    <tr>
+    <table>
+        <colgroup>
+            <col style="width:18%">
+            <col style="width:60%">
+            <col style="width:22%">
+        </colgroup>
+        <tr>
         <th>Name</th>
         <th>Description</th>
         <th>Next Watering</th>
     </tr>
 <?php
-    foreach (getUserPlants() as $plant) {
-        echo "<tr>";
-        echo "<td style='font-weight: bold; width:100px'>".htmlspecialchars($plant['name'])."</td>";
-        echo "<td style='text-align: justify'>".htmlspecialchars($plant['description'])."</td>";
-        echo "<td style='color: darkred'>".htmlspecialchars($plant['next_watering'])."</td>";
-        echo "</tr>";
+    if (getUserPlants() == null) {
+        echo "<p> You don't have any plants yet.</p>";
+    }
+    else {
+        foreach (getUserPlants() as $plant) {
+            echo "<form method='post' action='?page=start'>";
+            echo "<input type='hidden' name='plantId' value='".$plant['id']."'/>";
+            echo "<tr>";
+            echo "<td style='font-weight: bold; width:100px'>".htmlspecialchars($plant['name'])."<br><input type='submit' name='delete' value='Delete'/></td>";
+            echo "<td style='text-align: justify'>".htmlspecialchars($plant['description'])."</td>";
+            echo "<td style='color: darkred'>".htmlspecialchars($plant['next_watering'])."<br><input type='submit' name='water' value='Water'/></td></form>";
+            echo "</tr>";
+        }
     }
 endif;
 ?>
