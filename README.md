@@ -5,3 +5,5 @@ Kui kasutaja on sisse logitud, siis kuvatakse talle tema taimed kastmise järjek
 viimase kastmise väärtust. Ka on võimalik taimi kustutada.
 
 Hetkel ei saa taime salvestades valida viimase kastmise kuupäeva käsitsi, vaid automaatselt on selleks tänane kuupäev. Tulevikus on plaan see teha võimalikuks.
+
+Url: http://enos.itcollege.ee/~anisepp/nodeadplants/index.php?
