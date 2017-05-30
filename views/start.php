@@ -68,7 +68,8 @@ else:
             echo "</tr>";
         }
     }
+        echo "</table>";
+    echo "</div>";
+
 endif;
 ?>
-        </table>
-    </div>
