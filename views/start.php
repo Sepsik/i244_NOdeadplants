@@ -44,13 +44,15 @@ else:
     <div id="userPlants">
         <table>
             <colgroup>
-                <col style="width:18%">
-                <col style="width:60%">
+                <col style="width:14%">
+                <col style="width:42%">
+                <col style="width:22%">
                 <col style="width:22%">
             </colgroup>
             <tr>
                 <th>Name</th>
                 <th>Description</th>
+                <th>Last Watered</th>
                 <th>Next Watering</th>
             </tr>
 <?php
@@ -63,9 +65,11 @@ else:
             echo "<input type='hidden' name='plantId' value='".$plant['id']."'/>";
             echo "<tr>";
             echo "<td style='font-weight: bold; width:100px'>".htmlspecialchars($plant['name'])."<br><input type='submit' name='delete' value='Delete' onclick=\"return confirm('Are You sure You want to delete Your plant?');\"/></td>";
-            echo "<td style='text-align: justify'>".htmlspecialchars($plant['description'])."</td>";
-            echo "<td style='color: darkred'>".htmlspecialchars($plant['next_watering'])."<br><input type='submit' name='water' value='Water'/></td></form>";
+            echo "<td style='text-align: justify; text-align-last: center'>".htmlspecialchars($plant['description'])."</td>";
+            echo "<td>".htmlspecialchars($plant['last_watered'])."</td>";
+            echo "<td style='color: darkred'>".htmlspecialchars($plant['next_watering'])."<br><input type='submit' name='water' value='Water'/></td>";
             echo "</tr>";
+            echo "</form>";
         }
     }
         echo "</table>";
